@@ -28,7 +28,7 @@ comment=raw_input('Enter a comment -->')
 if len (comment)==0:
     target=today+os.sep+now+'.zip'
 else:
-    target=today+os.sep+now+'_'+comment.replace('','')+'.zip'
+    target=today+os.sep+now+'_'+comment.replace(' ','_')+'.zip'
 
 #如果子目录不存在则创建
 if not os.path.exists(today):
