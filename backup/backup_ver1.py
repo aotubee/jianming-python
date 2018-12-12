@@ -12,7 +12,8 @@ target_dir='/home/lijinian/backup/'
 
 
 #备份文件
-target=target_dir+os.sep+time.strftime('%Y%m%d%H%M%S')+'.zip'
+time=time.strftime('%Y%m%d%H%M%S')
+target=target_dir+os.sep+time+'.zip'
 
 
 #如果目标目录不存在则进行创建
@@ -29,3 +30,4 @@ if os.system(zip_command)==0:
     print 'Successful backup to',target
 else:
     print 'Backup Failed.'
+
