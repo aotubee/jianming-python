@@ -2,11 +2,14 @@
 # coding=utf-8
 
 import requests
-import re
+import re,os
 from lxml import etree
 
 
 class Spider:
+
+    def __init__(self):
+        switch=True
 
     def loadPage(self):
         """下载页面"""
@@ -29,8 +32,11 @@ class Spider:
             #处理页面
             img_HTML=requests.get(img_url)
             img_links=etree.HTML(img_HTML.content).xpath('//img[@class="BDE_Image"]/@src')
-
             self.writePage(img_links)
+
+       # for page in range(len(links)):
+       #     if page < 2:
+                #command=raw_input("如果继续，请输入回车，退出输入quit:")
 
     def writePage(self,img_links):
         """将数据写入指定文件中"""
@@ -40,6 +46,11 @@ class Spider:
             img=req.content
 
             #命名图片地址并写入文件
+            #检测指定目录是否存在,若不存在则创建
+            path='./image'
+            if not os.path.exists(path):
+                os.mkdir(path)
+                print "新建文件夹："+path
             filename=img_link[-10:]
             with open('./image/'+filename,'wb') as f:
                 f.write(img)
@@ -47,9 +58,9 @@ class Spider:
 
     def startWork(self):
         self.loadPage()
-#        command=raw_input("如果继续，请输入回车，退出输入quit：")
-#        if command=="quit":
-#            self.switch=False
+#            command=raw_input("如果继续，请输入回车，退出输入quit:")
+#            if command=="quit":
+#                self.switch=False
 
 
 if __name__=="__main__":
