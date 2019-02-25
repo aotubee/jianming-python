@@ -8,9 +8,6 @@ from lxml import etree
 
 class Spider:
 
-    def __init__(self):
-        switch=True
-
     def loadPage(self):
         """下载页面"""
         #首页
@@ -58,10 +55,6 @@ class Spider:
 
     def startWork(self):
         self.loadPage()
-#            command=raw_input("如果继续，请输入回车，退出输入quit:")
-#            if command=="quit":
-#                self.switch=False
-
 
 if __name__=="__main__":
     spider=Spider()
